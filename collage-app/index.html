@@ -1,8 +1,22 @@
 <!doctype html>
 <html lang="ru">
   <head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108349736', 'ym');
+
+        ym(108349736, 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108349736" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Коллаж из фото онлайн — бесплатно, без регистрации</title>
     <meta name="description" content="Создайте коллаж из фотографий и картинок онлайн — быстро, бесплатно и без регистрации. Прозрачный фон, 16 макетов, скачивание в PNG и JPG." />
@@ -13,15 +27,21 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Коллаж онлайн" />
     <meta property="og:title" content="Коллаж из фото онлайн — бесплатно, без регистрации" />
     <meta property="og:description" content="Создайте коллаж из фотографий и картинок онлайн — быстро, бесплатно и без регистрации. Прозрачный фон, 16 макетов, скачивание в PNG и JPG." />
     <meta property="og:url" content="https://collage-app.online/" />
     <meta property="og:locale" content="ru_RU" />
+    <meta property="og:image" content="https://collage-app.online/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Онлайн сервис создания фотоколлажей" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Коллаж из фото онлайн — бесплатно, без регистрации" />
     <meta name="twitter:description" content="Создайте коллаж из фотографий и картинок онлайн — быстро, бесплатно и без регистрации. Прозрачный фон, 16 макетов, скачивание в PNG и JPG." />
+    <meta name="twitter:image" content="https://collage-app.online/og-image.jpg" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -49,7 +69,51 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Статический контент для поисковых роботов (заменяется React при загрузке) -->
+      <header>
+        <h1>Коллаж из фото онлайн — бесплатно и без регистрации</h1>
+      </header>
+      <main>
+        <p>
+          Создайте красивый <strong>фотоколлаж онлайн</strong> прямо в браузере — быстро, бесплатно и без регистрации.
+          Загрузите фотографии, выберите макет и скачайте готовый коллаж в PNG или JPG.
+        </p>
+        <section>
+          <h2>Как сделать коллаж из фото онлайн</h2>
+          <ol>
+            <li>Загрузите фотографии через drag&amp;drop или выбор файлов</li>
+            <li>Выберите один из 16 макетов коллажа</li>
+            <li>Настройте фон, рамку и скругление углов</li>
+            <li>Скачайте готовый коллаж в PNG (с прозрачным фоном) или JPG</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Возможности сервиса</h2>
+          <ul>
+            <li>16 макетов: от 1 до 6 фотографий в коллаже</li>
+            <li>Прозрачный фон для коллажа (PNG без фона)</li>
+            <li>Настройка цвета фона, ширины и цвета рамки</li>
+            <li>Скругление углов ячеек</li>
+            <li>Экспорт до 3840×3840 пикселей</li>
+            <li>Работает полностью в браузере, без установки</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Часто задаваемые вопросы</h2>
+          <dl>
+            <dt>Нужна ли регистрация для создания коллажа?</dt>
+            <dd>Нет, сервис работает полностью без регистрации и без входа в аккаунт.</dd>
+            <dt>Можно ли сделать коллаж с прозрачным фоном?</dt>
+            <dd>Да, при экспорте в формате PNG фон будет прозрачным.</dd>
+            <dt>Какие форматы фото поддерживаются?</dt>
+            <dd>JPG, PNG, WEBP и HEIC.</dd>
+            <dt>Бесплатно ли пользоваться сервисом?</dt>
+            <dd>Да, создание и скачивание коллажей полностью бесплатно.</dd>
+          </dl>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
