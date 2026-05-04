@@ -26,13 +26,27 @@ export function CollageCanvas() {
   const { canvasWidth, canvasHeight } = state
 
   return (
-    <main className="flex-1 flex items-center justify-center overflow-hidden p-6" style={{ background: 'radial-gradient(ellipse at 60% 40%, #ece8fc 0%, #e5e0f8 60%, #ddd8f2 100%)' }}>
+    <main
+      style={{
+        flex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        padding: 24,
+        background: '#eeecea',
+        backgroundImage: 'radial-gradient(circle, #c8c5c2 0.8px, transparent 0.8px)',
+        backgroundSize: '20px 20px',
+      }}
+    >
       <div
-        className="relative shadow-xl"
         style={{
+          position: 'relative',
           aspectRatio: `${canvasWidth} / ${canvasHeight}`,
           maxHeight: '100%',
           maxWidth: '100%',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04)',
+          borderRadius: 4,
         }}
       >
         <canvas

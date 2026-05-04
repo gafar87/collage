@@ -8,9 +8,9 @@ export function RadiusSettings() {
   }
 
   return (
-    <section className="px-4 py-3">
-      <h3 className="text-xs font-medium text-violet-300/70 mb-2.5">Скругление</h3>
-      <div className="flex items-center gap-2.5">
+    <div>
+      <div style={{ fontSize: 12, fontWeight: 500, color: '#666', marginBottom: 8 }}>Скругление</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <input
           type="range"
           min={0}
@@ -18,7 +18,7 @@ export function RadiusSettings() {
           step={1}
           value={borderRadius}
           onChange={(e) => handleChange(Number(e.target.value))}
-          className="flex-1 accent-violet-400"
+          style={{ flex: 1, accentColor: '#1c1c1c' }}
         />
         <input
           type="number"
@@ -26,10 +26,10 @@ export function RadiusSettings() {
           max={100}
           value={borderRadius}
           onChange={(e) => handleChange(Number(e.target.value))}
-          className="w-14 bg-white/10 rounded px-2 py-1 text-sm text-white text-center"
+          style={{ width: 48, background: '#f5f5f2', border: '1px solid #e4e3e0', borderRadius: 6, padding: '4px 6px', fontSize: 13, textAlign: 'center', color: '#1c1c1c', fontFamily: 'inherit' }}
         />
-        <span className="text-xs text-gray-500">px</span>
+        <span style={{ fontSize: 11, color: '#aaa' }}>px</span>
       </div>
-    </section>
+    </div>
   )
 }

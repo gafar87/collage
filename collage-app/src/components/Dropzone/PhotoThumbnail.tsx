@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useCollageStore } from '../../store/useCollageStore'
 
 interface PhotoThumbnailProps {
@@ -7,6 +8,7 @@ interface PhotoThumbnailProps {
 export function PhotoThumbnail({ imageId }: PhotoThumbnailProps) {
   const image = useCollageStore((s) => s.images[imageId])
   const removeImage = useCollageStore((s) => s.removeImage)
+  const [hovered, setHovered] = useState(false)
 
   if (!image) return null
 
@@ -17,23 +19,54 @@ export function PhotoThumbnail({ imageId }: PhotoThumbnailProps) {
 
   return (
     <div
-      className="relative shrink-0 group"
+      style={{ position: 'relative', flexShrink: 0 }}
       draggable
       onDragStart={handleDragStart}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <img
         src={image.src}
         alt=""
         draggable={false}
-        className="w-16 h-16 object-cover rounded-lg cursor-grab active:cursor-grabbing border-2 border-transparent hover:border-violet-400 transition-colors pointer-events-none"
+        style={{
+          width: 56,
+          height: 56,
+          objectFit: 'cover',
+          borderRadius: 8,
+          cursor: 'grab',
+          border: hovered ? '2px solid #1c1c1c' : '2px solid transparent',
+          transition: 'border 0.15s',
+          pointerEvents: 'none',
+          display: 'block',
+        }}
       />
-      <button
-        onClick={() => removeImage(imageId)}
-        className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
-        title="Удалить фото"
-      >
-        ×
-      </button>
+      {hovered && (
+        <button
+          onClick={() => removeImage(imageId)}
+          style={{
+            position: 'absolute',
+            top: -6,
+            right: -6,
+            width: 18,
+            height: 18,
+            borderRadius: '50%',
+            background: '#e74c3c',
+            color: '#fff',
+            fontSize: 11,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '2px solid #fff',
+            cursor: 'pointer',
+            padding: 0,
+            lineHeight: 1,
+          }}
+          title="Удалить фото"
+        >
+          ×
+        </button>
+      )}
     </div>
   )
 }

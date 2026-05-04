@@ -7,6 +7,17 @@ interface ExportModalProps {
   onClose: () => void
 }
 
+const btnBase: React.CSSProperties = {
+  flex: 1,
+  padding: '8px 0',
+  fontSize: 13,
+  fontWeight: 500,
+  borderRadius: 6,
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  transition: 'all 0.15s',
+}
+
 export function ExportModal({ onClose }: ExportModalProps) {
   const state = useCollageStore()
   const [format, setFormat] = useState<'png' | 'jpg'>('png')
@@ -28,53 +39,47 @@ export function ExportModal({ onClose }: ExportModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+      style={{ position: 'fixed', inset: 0, zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', backdropFilter: 'blur(4px)' }}
     >
-      <div className="bg-white rounded-xl shadow-2xl w-80 p-6 flex flex-col gap-5">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-800">Скачать коллаж</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors text-xl leading-none"
-          >
-            ×
-          </button>
+      <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,0.15)', width: 320, padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h2 style={{ fontSize: 17, fontWeight: 600, color: '#1c1c1c', margin: 0 }}>Скачать коллаж</h2>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, color: '#aaa', cursor: 'pointer', padding: 0, lineHeight: 1 }}>×</button>
         </div>
 
         {/* Format */}
-        <div className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-gray-700">Формат</span>
-          <div className="flex rounded-lg border border-gray-200 overflow-hidden">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: '#555' }}>Формат</span>
+          <div style={{ display: 'flex', gap: 6 }}>
             {(['png', 'jpg'] as const).map((f) => (
               <button
                 key={f}
                 onClick={() => setFormat(f)}
-                className={`flex-1 py-2 text-sm font-medium transition-colors ${
-                  format === f
-                    ? 'bg-violet-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50'
-                }`}
+                style={{
+                  ...btnBase,
+                  background: format === f ? '#1c1c1c' : '#f5f5f2',
+                  color: format === f ? '#fff' : '#666',
+                  border: format === f ? '1px solid #1c1c1c' : '1px solid #e4e3e0',
+                }}
               >
                 {f.toUpperCase()}
               </button>
             ))}
           </div>
           {format === 'png' && (
-            <p className="text-xs text-gray-500">
-              {state.transparentBackground
-                ? 'Прозрачный фон будет сохранён'
-                : 'Фон: ' + state.backgroundColor}
+            <p style={{ fontSize: 12, color: '#aaa', margin: 0 }}>
+              {state.transparentBackground ? 'Прозрачный фон будет сохранён' : `Фон: ${state.backgroundColor}`}
             </p>
           )}
         </div>
 
         {/* JPG quality */}
         {format === 'jpg' && (
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">Качество</span>
-              <span className="text-sm text-violet-600 font-medium">{quality}%</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: 13, fontWeight: 500, color: '#555' }}>Качество</span>
+              <span style={{ fontSize: 13, fontWeight: 600, color: '#1c1c1c' }}>{quality}%</span>
             </div>
             <input
               type="range"
@@ -82,40 +87,50 @@ export function ExportModal({ onClose }: ExportModalProps) {
               max={100}
               value={quality}
               onChange={(e) => setQuality(Number(e.target.value))}
-              className="w-full accent-violet-600"
+              style={{ width: '100%', accentColor: '#1c1c1c' }}
             />
-            <p className="text-xs text-gray-500">Фон: {state.backgroundColor}</p>
+            <p style={{ fontSize: 12, color: '#aaa', margin: 0 }}>Фон: {state.backgroundColor}</p>
           </div>
         )}
 
         {/* Scale */}
-        <div className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-gray-700">Размер экспорта</span>
-          <div className="flex gap-2">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: '#555' }}>Размер экспорта</span>
+          <div style={{ display: 'flex', gap: 6 }}>
             {[1, 2, 3].map((s) => (
               <button
                 key={s}
                 onClick={() => setScale(s)}
-                className={`flex-1 py-2 text-sm font-medium rounded-lg border transition-colors ${
-                  scale === s
-                    ? 'border-violet-600 bg-violet-50 text-violet-600'
-                    : 'border-gray-200 text-gray-600 hover:bg-gray-50'
-                }`}
+                style={{
+                  ...btnBase,
+                  background: scale === s ? '#1c1c1c' : '#fff',
+                  color: scale === s ? '#fff' : '#666',
+                  border: scale === s ? '1px solid #1c1c1c' : '1px solid #e4e3e0',
+                }}
               >
                 ×{s}
               </button>
             ))}
           </div>
-          <p className="text-xs text-gray-500">
-            {state.canvasWidth * scale} × {state.canvasHeight * scale} px
-          </p>
+          <span style={{ fontSize: 11, color: '#aaa' }}>{state.canvasWidth * scale} × {state.canvasHeight * scale} px</span>
         </div>
 
-        {/* Download button */}
         <button
           onClick={handleDownload}
           disabled={loading}
-          className="w-full py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          style={{
+            width: '100%',
+            padding: '10px 0',
+            background: '#1c1c1c',
+            color: '#fff',
+            fontSize: 14,
+            fontWeight: 600,
+            borderRadius: 8,
+            border: 'none',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            opacity: loading ? 0.6 : 1,
+            fontFamily: 'inherit',
+          }}
         >
           {loading ? 'Создание...' : 'Скачать'}
         </button>

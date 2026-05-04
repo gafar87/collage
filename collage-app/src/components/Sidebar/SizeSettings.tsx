@@ -8,6 +8,18 @@ const PRESETS = [
   { label: '16:9', w: 1920, h: 1080 },
 ]
 
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  background: '#f5f5f2',
+  border: '1px solid #e4e3e0',
+  borderRadius: 6,
+  padding: '6px 8px',
+  fontSize: 13,
+  textAlign: 'center',
+  color: '#1c1c1c',
+  fontFamily: 'inherit',
+}
+
 export function SizeSettings() {
   const { canvasWidth, canvasHeight, setCanvasSize } = useCollageStore()
   const [keepRatio, setKeepRatio] = useState(false)
@@ -27,8 +39,7 @@ export function SizeSettings() {
     const w = parseInt(raw, 10)
     if (!w || w < 100) return
     if (keepRatio) {
-      const ratio = canvasHeight / canvasWidth
-      applySize(w, Math.round(w * ratio))
+      applySize(w, Math.round(w * (canvasHeight / canvasWidth)))
     } else {
       applySize(w, canvasHeight)
     }
@@ -39,18 +50,15 @@ export function SizeSettings() {
     const h = parseInt(raw, 10)
     if (!h || h < 100) return
     if (keepRatio) {
-      const ratio = canvasWidth / canvasHeight
-      applySize(Math.round(h * ratio), h)
+      applySize(Math.round(h * (canvasWidth / canvasHeight)), h)
     } else {
       applySize(canvasWidth, h)
     }
   }
 
   return (
-    <section className="px-4 pt-4 pb-5">
-      <h3 className="text-sm font-semibold text-white mb-3">Холст</h3>
-
-      <div className="flex items-center gap-2 mb-3">
+    <>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
         <input
           type="number"
           min={100}
@@ -58,9 +66,9 @@ export function SizeSettings() {
           value={localW}
           onChange={(e) => handleWidthChange(e.target.value)}
           onBlur={() => setLocalW(String(canvasWidth))}
-          className="w-full bg-white/10 rounded px-2 py-1.5 text-sm text-white text-center"
+          style={inputStyle}
         />
-        <span className="text-gray-500 shrink-0">×</span>
+        <span style={{ color: '#bbb', fontSize: 12, flexShrink: 0 }}>×</span>
         <input
           type="number"
           min={100}
@@ -68,22 +76,29 @@ export function SizeSettings() {
           value={localH}
           onChange={(e) => handleHeightChange(e.target.value)}
           onBlur={() => setLocalH(String(canvasHeight))}
-          className="w-full bg-white/10 rounded px-2 py-1.5 text-sm text-white text-center"
+          style={inputStyle}
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-1.5 mb-3">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginBottom: 10 }}>
         {PRESETS.map((p) => {
           const active = canvasWidth === p.w && canvasHeight === p.h
           return (
             <button
               key={p.label}
               onClick={() => applySize(p.w, p.h)}
-              className={`text-xs py-1.5 rounded transition-colors ${
-                active
-                  ? 'bg-violet-500/25 text-violet-100 ring-1 ring-violet-400/60'
-                  : 'bg-white/10 hover:bg-violet-500/20 text-gray-300'
-              }`}
+              style={{
+                padding: '6px 0',
+                borderRadius: 6,
+                border: active ? '1px solid #1c1c1c' : '1px solid #e4e3e0',
+                background: active ? '#1c1c1c' : '#fff',
+                color: active ? '#fff' : '#666',
+                fontSize: 12,
+                fontWeight: 500,
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+                transition: 'all 0.15s',
+              }}
             >
               {p.label}
             </button>
@@ -91,15 +106,15 @@ export function SizeSettings() {
         })}
       </div>
 
-      <label className="flex items-center gap-2 text-sm cursor-pointer text-gray-400 hover:text-gray-200 transition-colors">
+      <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#777', cursor: 'pointer', userSelect: 'none' }}>
         <input
           type="checkbox"
           checked={keepRatio}
           onChange={(e) => setKeepRatio(e.target.checked)}
-          className="rounded accent-violet-400"
+          style={{ accentColor: '#1c1c1c', width: 14, height: 14 }}
         />
         Сохранять пропорции
       </label>
-    </section>
+    </>
   )
 }

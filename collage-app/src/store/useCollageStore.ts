@@ -74,11 +74,11 @@ export const useCollageStore = create<AppState>((set) => ({
   selectedLayoutId: '1x1',
   cells: createDefaultCells(1),
   images: {},
-  borderWidth: 3,
+  borderWidth: 0,
   borderColor: '#ffffff',
   backgroundColor: '#ffffff',
   transparentBackground: false,
-  borderRadius: 20,
+  borderRadius: 0,
   selectedCellId: null,
   exportModalOpen: false,
 

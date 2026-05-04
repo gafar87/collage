@@ -228,7 +228,7 @@ export function CellOverlay() {
                 height: `${hPct}%`,
                 pointerEvents: 'all',
                 cursor: hasImage ? 'grab' : 'pointer',
-                outline: isSelected ? '2px solid #6366f1' : undefined,
+                outline: isSelected ? '2px solid #1c1c1c' : undefined,
                 outlineOffset: '-2px',
                 borderRadius: 'inherit',
                 zIndex: isSelected ? 1 : undefined,
@@ -251,7 +251,7 @@ export function CellOverlay() {
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'rgba(180, 155, 130, 0.12)',
+                    background: 'rgba(0,0,0,0.04)',
                     pointerEvents: 'none',
                   }}
                 />
