@@ -81,8 +81,8 @@ export function SizeSettings() {
               onClick={() => applySize(p.w, p.h)}
               className={`text-xs py-1.5 rounded transition-colors ${
                 active
-                  ? 'bg-white/20 text-white ring-1 ring-white/50'
-                  : 'bg-white/10 hover:bg-white/20 text-gray-300'
+                  ? 'bg-violet-500/25 text-violet-100 ring-1 ring-violet-400/60'
+                  : 'bg-white/10 hover:bg-violet-500/20 text-gray-300'
               }`}
             >
               {p.label}
@@ -96,7 +96,7 @@ export function SizeSettings() {
           type="checkbox"
           checked={keepRatio}
           onChange={(e) => setKeepRatio(e.target.checked)}
-          className="rounded accent-white"
+          className="rounded accent-violet-400"
         />
         Сохранять пропорции
       </label>

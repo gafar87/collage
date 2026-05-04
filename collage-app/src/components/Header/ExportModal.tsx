@@ -52,7 +52,7 @@ export function ExportModal({ onClose }: ExportModalProps) {
                 onClick={() => setFormat(f)}
                 className={`flex-1 py-2 text-sm font-medium transition-colors ${
                   format === f
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-violet-600 text-white'
                     : 'bg-white text-gray-600 hover:bg-gray-50'
                 }`}
               >
@@ -74,7 +74,7 @@ export function ExportModal({ onClose }: ExportModalProps) {
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-700">Качество</span>
-              <span className="text-sm text-indigo-600 font-medium">{quality}%</span>
+              <span className="text-sm text-violet-600 font-medium">{quality}%</span>
             </div>
             <input
               type="range"
@@ -82,7 +82,7 @@ export function ExportModal({ onClose }: ExportModalProps) {
               max={100}
               value={quality}
               onChange={(e) => setQuality(Number(e.target.value))}
-              className="w-full accent-indigo-600"
+              className="w-full accent-violet-600"
             />
             <p className="text-xs text-gray-500">Фон: {state.backgroundColor}</p>
           </div>
@@ -98,7 +98,7 @@ export function ExportModal({ onClose }: ExportModalProps) {
                 onClick={() => setScale(s)}
                 className={`flex-1 py-2 text-sm font-medium rounded-lg border transition-colors ${
                   scale === s
-                    ? 'border-indigo-600 bg-indigo-50 text-indigo-600'
+                    ? 'border-violet-600 bg-violet-50 text-violet-600'
                     : 'border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
@@ -115,7 +115,7 @@ export function ExportModal({ onClose }: ExportModalProps) {
         <button
           onClick={handleDownload}
           disabled={loading}
-          className="w-full py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? 'Создание...' : 'Скачать'}
         </button>

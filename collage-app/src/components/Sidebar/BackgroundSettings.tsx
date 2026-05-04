@@ -5,7 +5,7 @@ export function BackgroundSettings() {
 
   return (
     <section className="px-4 py-3 border-b border-white/10">
-      <h3 className="text-xs font-medium text-gray-400 mb-2.5">Фон</h3>
+      <h3 className="text-xs font-medium text-violet-300/70 mb-2.5">Фон</h3>
 
       {/* Color picker + HEX */}
       <div className="flex items-center gap-2.5 mb-2.5">
@@ -51,7 +51,7 @@ export function BackgroundSettings() {
           type="checkbox"
           checked={transparentBackground}
           onChange={(e) => setTransparentBackground(e.target.checked)}
-          className="rounded accent-white"
+          className="rounded accent-violet-400"
         />
         Прозрачный фон
       </label>

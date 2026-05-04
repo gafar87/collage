@@ -17,7 +17,7 @@ export function BorderSettings() {
 
   return (
     <section className="px-4 py-3 border-b border-white/10">
-      <h3 className="text-xs font-medium text-gray-400 mb-2.5">Рамка</h3>
+      <h3 className="text-xs font-medium text-violet-300/70 mb-2.5">Рамка</h3>
 
       {/* Ширина */}
       <div className="flex items-center gap-2.5 mb-2.5">
@@ -28,7 +28,7 @@ export function BorderSettings() {
           step={1}
           value={borderWidth}
           onChange={(e) => handleWidthChange(Number(e.target.value))}
-          className="flex-1 accent-white"
+          className="flex-1 accent-violet-400"
         />
         <input
           type="number"
@@ -72,7 +72,7 @@ export function BorderSettings() {
           type="checkbox"
           checked={useBgColor}
           onChange={(e) => handleUseBgColor(e.target.checked)}
-          className="rounded accent-white"
+          className="rounded accent-violet-400"
         />
         Использовать цвет фона
       </label>

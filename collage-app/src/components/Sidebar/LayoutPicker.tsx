@@ -60,8 +60,8 @@ export function LayoutPicker() {
               className={`
                 aspect-square rounded flex items-center justify-center transition-colors
                 ${active
-                  ? 'bg-white/20 text-white ring-1 ring-white/50'
-                  : 'bg-white/8 text-gray-400 hover:bg-white/15 hover:text-white'
+                  ? 'bg-violet-500/25 text-violet-100 ring-1 ring-violet-400/60'
+                  : 'bg-white/8 text-gray-400 hover:bg-violet-500/15 hover:text-violet-100'
                 }
               `}
             >

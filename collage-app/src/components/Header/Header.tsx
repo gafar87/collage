@@ -9,7 +9,7 @@ export function Header() {
     <>
       <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0 z-10 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-500 rounded-lg flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center shrink-0">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <rect x="1" y="1" width="7" height="7" rx="1" fill="white" />
               <rect x="10" y="1" width="7" height="7" rx="1" fill="white" opacity="0.7" />
@@ -26,7 +26,7 @@ export function Header() {
         </div>
         <button
           onClick={() => setExportModalOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700 transition-colors"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
             <path d="M7.5 1v9M4 7l3.5 3.5L11 7M2 13h11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
