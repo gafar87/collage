@@ -3,15 +3,15 @@ import { useCollageStore } from '../../store/useCollageStore'
 
 const ICON_SIZE = 36
 const ICON_PAD = 2
-const ICON_GAP = 1.5
+const ICON_GAP = 3
 
 function LayoutIcon({ cells }: { cells: { x: number; y: number; width: number; height: number }[] }) {
   const inner = ICON_SIZE - 2 * ICON_PAD
 
   return (
     <svg
-      width={ICON_SIZE}
-      height={ICON_SIZE}
+      width="100%"
+      height="100%"
       viewBox={`0 0 ${ICON_SIZE} ${ICON_SIZE}`}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -47,8 +47,8 @@ export function LayoutPicker() {
   const { selectedLayoutId, setLayout } = useCollageStore()
 
   return (
-    <section className="p-4 border-b border-white/10">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Макет</h3>
+    <section className="px-4 pt-5 pb-4 border-b border-white/10">
+      <h3 className="text-sm font-semibold text-white mb-4">Макет</h3>
       <div className="grid grid-cols-4 gap-2">
         {LAYOUTS.map((layout) => {
           const active = layout.id === selectedLayoutId
@@ -60,8 +60,8 @@ export function LayoutPicker() {
               className={`
                 aspect-square rounded flex items-center justify-center transition-colors
                 ${active
-                  ? 'bg-indigo-600 text-white ring-2 ring-indigo-400'
-                  : 'bg-white/10 text-gray-400 hover:bg-white/20 hover:text-white'
+                  ? 'bg-white/20 text-white ring-1 ring-white/50'
+                  : 'bg-white/8 text-gray-400 hover:bg-white/15 hover:text-white'
                 }
               `}
             >

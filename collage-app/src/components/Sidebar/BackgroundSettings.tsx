@@ -4,11 +4,11 @@ export function BackgroundSettings() {
   const { backgroundColor, transparentBackground, setBackgroundColor, setTransparentBackground } = useCollageStore()
 
   return (
-    <section className="p-4 border-b border-white/10">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Фон</h3>
+    <section className="px-4 py-3 border-b border-white/10">
+      <h3 className="text-xs font-medium text-gray-400 mb-2.5">Фон</h3>
 
       {/* Color picker + HEX */}
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center gap-2.5 mb-2.5">
         <div className="relative w-8 h-8 rounded border-2 border-white/20 overflow-hidden cursor-pointer shrink-0">
           <input
             type="color"
@@ -51,7 +51,7 @@ export function BackgroundSettings() {
           type="checkbox"
           checked={transparentBackground}
           onChange={(e) => setTransparentBackground(e.target.checked)}
-          className="rounded accent-indigo-500"
+          className="rounded accent-white"
         />
         Прозрачный фон
       </label>

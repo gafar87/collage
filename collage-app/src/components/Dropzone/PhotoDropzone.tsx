@@ -74,41 +74,87 @@ export function PhotoDropzone() {
     multiple: true,
   })
 
+  const isEmpty = imageIds.length === 0
+
   return (
-    <div className="h-[140px] shrink-0 bg-white border-t border-gray-200 flex items-center px-4 gap-4">
+    <div
+      className="shrink-0 border-t flex items-center px-4 gap-4 transition-all duration-300"
+      style={{
+        height: isEmpty ? '156px' : '140px',
+        background: isEmpty ? '#fdf8f4' : 'white',
+        borderColor: isEmpty ? '#e8d8c8' : '#e5e7eb',
+      }}
+    >
       {/* Drop zone */}
-      <div
-        {...getRootProps()}
-        className={`h-[100px] w-[180px] shrink-0 border-2 border-dashed rounded-lg flex flex-col items-center justify-center gap-1 cursor-pointer transition-colors ${
-          isDragActive
-            ? 'border-indigo-500 bg-indigo-50'
-            : 'border-gray-300 hover:border-indigo-400 hover:bg-indigo-50'
-        }`}
-      >
-        <input {...getInputProps()} />
-        {loadingCount > 0 ? (
-          <svg className="animate-spin text-indigo-500" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-          </svg>
-        ) : (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-400">
-            <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+      <div className="relative flex flex-col items-center gap-1 shrink-0">
+        {/* Step badge — only in empty state */}
+        {isEmpty && (
+          <div
+            className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-semibold px-2 py-0.5 rounded-full select-none"
+            style={{ background: '#a07850', color: '#fff', letterSpacing: '0.04em' }}
+          >
+            ШАГ 1
+          </div>
         )}
-        <span className="text-xs text-gray-400 text-center leading-tight px-2">
-          {loadingCount > 0
-            ? 'Загрузка...'
-            : isDragActive
-            ? 'Отпустите файлы'
-            : 'Перетащите фото или нажмите'}
-        </span>
+        <div
+          {...getRootProps()}
+          className={`border-2 border-dashed rounded-xl flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-colors ${
+            isDragActive
+              ? 'border-amber-600 bg-amber-50'
+              : isEmpty
+              ? 'animate-dropzone-breathe hover:bg-amber-50/60'
+              : 'border-gray-300 hover:border-stone-400 hover:bg-stone-50'
+          }`}
+          style={{
+            width: isEmpty ? '200px' : '180px',
+            height: isEmpty ? '112px' : '100px',
+          }}
+        >
+          <input {...getInputProps()} />
+          {loadingCount > 0 ? (
+            <svg className="animate-spin" width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ color: '#a07850' }}>
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+            </svg>
+          ) : (
+            <svg
+              width={isEmpty ? '28' : '22'}
+              height={isEmpty ? '28' : '22'}
+              viewBox="0 0 24 24"
+              fill="none"
+              style={{ color: isEmpty ? '#a07850' : '#9ca3af', transition: 'all 0.2s' }}
+            >
+              {/* Upload arrow icon */}
+              <path d="M12 3v13M7 8l5-5 5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
+          <span
+            className="text-center leading-tight px-2"
+            style={{
+              fontSize: isEmpty ? '12px' : '11px',
+              color: isEmpty ? '#8a6540' : '#9ca3af',
+              fontWeight: isEmpty ? 500 : 400,
+            }}
+          >
+            {loadingCount > 0
+              ? 'Загрузка...'
+              : isDragActive
+              ? 'Отпустите файлы'
+              : isEmpty
+              ? 'Перетащите фото сюда или нажмите'
+              : 'Добавить ещё'}
+          </span>
+        </div>
       </div>
 
       {/* Thumbnails */}
       <div className="flex-1 flex items-center gap-3 overflow-x-auto py-2">
-        {imageIds.length === 0 ? (
-          <span className="text-sm text-gray-400">Загруженные фото появятся здесь</span>
+        {isEmpty ? (
+          <div className="flex flex-col gap-0.5">
+            <span className="text-sm font-medium" style={{ color: '#b8a090' }}>Здесь появятся ваши фото</span>
+            <span className="text-xs" style={{ color: '#c8b4a0' }}>JPG, PNG или WEBP — можно несколько сразу</span>
+          </div>
         ) : (
           imageIds.map((id) => <PhotoThumbnail key={id} imageId={id} />)
         )}

@@ -144,18 +144,17 @@ export const LAYOUTS: LayoutConfig[] = [
     ],
   },
 
-  // 5 фото: 1 большое + 4 маленьких (2×2)
+  // 5 фото: 1 большое слева + 4 маленьких (2×2) справа
   {
     id: '5a',
     name: '1 + 4 (2×2)',
     cellCount: 5,
     cells: [
-      { id: 0, x: 0,   y: 0,   width: 0.5, height: 1 },
-      { id: 1, x: 0.5, y: 0,   width: 0.5, height: 0.5 },
-      { id: 2, x: 0.5, y: 0.5, width: 0.5, height: 0.5 },
-      // Делим левую часть пополам
-      { id: 3, x: 0,   y: 0,   width: 0.25, height: 0.5 },
-      { id: 4, x: 0.25,y: 0,   width: 0.25, height: 0.5 },
+      { id: 0, x: 0,    y: 0,   width: 0.5,  height: 1   },
+      { id: 1, x: 0.5,  y: 0,   width: 0.25, height: 0.5 },
+      { id: 2, x: 0.75, y: 0,   width: 0.25, height: 0.5 },
+      { id: 3, x: 0.5,  y: 0.5, width: 0.25, height: 0.5 },
+      { id: 4, x: 0.75, y: 0.5, width: 0.25, height: 0.5 },
     ],
   },
 

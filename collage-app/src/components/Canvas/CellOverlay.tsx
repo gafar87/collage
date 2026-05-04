@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect, useCallback, useState } from 'react'
 import { useCollageStore } from '../../store/useCollageStore'
 import { useToastStore } from '../../store/useToastStore'
 import { getLayout } from '../../layouts/layouts'
@@ -35,6 +35,7 @@ export function CellOverlay() {
   const overlayRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef<DragState | null>(null)
   const hoveredCellRef = useRef<number | null>(null)
+  const [hoveredEmptyCell, setHoveredEmptyCell] = useState<number | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const fileInputCellRef = useRef<number | null>(null)
 
@@ -138,7 +139,30 @@ export function CellOverlay() {
         className="hidden"
         onChange={handleFileInputChange}
       />
-      <div ref={overlayRef} className="absolute inset-0" style={{ pointerEvents: 'none' }}>
+      <div
+        ref={overlayRef}
+        className="absolute inset-0"
+        style={{ pointerEvents: 'none' }}
+        onDragOver={(e) => {
+          e.preventDefault()
+          const hasCellId = e.dataTransfer.types.includes('text/cellid')
+          e.dataTransfer.dropEffect = hasCellId ? 'move' : 'copy'
+        }}
+        onDrop={(e) => {
+          e.preventDefault()
+          const el = (e.target as HTMLElement).closest('[data-cell-id]') as HTMLElement | null
+          if (!el) return
+          const cellId = Number(el.dataset.cellId)
+          const fromCellId = e.dataTransfer.getData('text/cellid')
+          if (fromCellId !== '') {
+            const fromId = Number(fromCellId)
+            if (fromId !== cellId) swapCells(fromId, cellId)
+            return
+          }
+          const imageId = e.dataTransfer.getData('imageId')
+          if (imageId) setCellImage(cellId, imageId)
+        }}
+      >
         {layout.cells.map((layoutCell) => {
           let absX = pad + layoutCell.x * innerW
           let absY = pad + layoutCell.y * innerH
@@ -165,28 +189,6 @@ export function CellOverlay() {
           const cellState = cells[layoutCell.id]
           const hasImage = cellState?.imageId != null
           const isSelected = selectedCellId === layoutCell.id
-
-          function handleDragOver(e: React.DragEvent) {
-            e.preventDefault()
-            const hasCellId = e.dataTransfer.types.includes('text/cellid')
-            e.dataTransfer.dropEffect = hasCellId ? 'move' : 'copy'
-          }
-
-          function handleDrop(e: React.DragEvent) {
-            e.preventDefault()
-            const cellId = e.dataTransfer.getData('text/cellid')
-            if (cellId !== '') {
-              const fromId = Number(cellId)
-              if (fromId !== layoutCell.id) {
-                swapCells(fromId, layoutCell.id)
-              }
-              return
-            }
-            const imageId = e.dataTransfer.getData('imageId')
-            if (imageId) {
-              setCellImage(layoutCell.id, imageId)
-            }
-          }
 
           function handleMouseDown(e: React.MouseEvent) {
             if (!hasImage) return
@@ -231,13 +233,29 @@ export function CellOverlay() {
                 borderRadius: 'inherit',
                 zIndex: isSelected ? 1 : undefined,
               }}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
+              data-cell-id={layoutCell.id}
               onMouseDown={handleMouseDown}
               onClick={handleClick}
-              onMouseEnter={() => { hoveredCellRef.current = layoutCell.id }}
-              onMouseLeave={() => { hoveredCellRef.current = null }}
+              onMouseEnter={() => {
+                hoveredCellRef.current = layoutCell.id
+                if (!hasImage) setHoveredEmptyCell(layoutCell.id)
+              }}
+              onMouseLeave={() => {
+                hoveredCellRef.current = null
+                setHoveredEmptyCell(null)
+              }}
             >
+              {/* Hover highlight for empty cells (mouse-only, no drag state) */}
+              {!hasImage && hoveredEmptyCell === layoutCell.id && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'rgba(180, 155, 130, 0.12)',
+                    pointerEvents: 'none',
+                  }}
+                />
+              )}
               {hasImage && (
                 <div
                   draggable
@@ -262,7 +280,12 @@ export function CellOverlay() {
                   }}
                   title="Перетащить ячейку"
                 >
-                  ⠿
+                  {/* 2×3 dot grid — universal drag handle */}
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="currentColor">
+                    <circle cx="2" cy="2"  r="1.3" /><circle cx="8" cy="2"  r="1.3" />
+                    <circle cx="2" cy="7"  r="1.3" /><circle cx="8" cy="7"  r="1.3" />
+                    <circle cx="2" cy="12" r="1.3" /><circle cx="8" cy="12" r="1.3" />
+                  </svg>
                 </div>
               )}
             </div>

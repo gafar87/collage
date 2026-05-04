@@ -8,9 +8,9 @@ export function RadiusSettings() {
   }
 
   return (
-    <section className="p-4 border-b border-white/10">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Скругление</h3>
-      <div className="flex items-center gap-3">
+    <section className="px-4 py-3">
+      <h3 className="text-xs font-medium text-gray-400 mb-2.5">Скругление</h3>
+      <div className="flex items-center gap-2.5">
         <input
           type="range"
           min={0}
@@ -18,7 +18,7 @@ export function RadiusSettings() {
           step={1}
           value={borderRadius}
           onChange={(e) => handleChange(Number(e.target.value))}
-          className="flex-1 accent-indigo-500"
+          className="flex-1 accent-white"
         />
         <input
           type="number"

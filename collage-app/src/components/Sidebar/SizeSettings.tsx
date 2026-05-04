@@ -47,8 +47,8 @@ export function SizeSettings() {
   }
 
   return (
-    <section className="p-4">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">Размер холста</h3>
+    <section className="px-4 pt-4 pb-5">
+      <h3 className="text-sm font-semibold text-white mb-3">Холст</h3>
 
       <div className="flex items-center gap-2 mb-3">
         <input
@@ -81,7 +81,7 @@ export function SizeSettings() {
               onClick={() => applySize(p.w, p.h)}
               className={`text-xs py-1.5 rounded transition-colors ${
                 active
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-white/20 text-white ring-1 ring-white/50'
                   : 'bg-white/10 hover:bg-white/20 text-gray-300'
               }`}
             >
@@ -96,7 +96,7 @@ export function SizeSettings() {
           type="checkbox"
           checked={keepRatio}
           onChange={(e) => setKeepRatio(e.target.checked)}
-          className="rounded accent-indigo-500"
+          className="rounded accent-white"
         />
         Сохранять пропорции
       </label>

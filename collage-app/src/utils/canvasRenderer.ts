@@ -24,7 +24,7 @@ function drawCheckerboard(ctx: CanvasRenderingContext2D, x: number, y: number, w
   for (let cx = x; cx < x + w; cx += size) {
     for (let cy = y; cy < y + h; cy += size) {
       const isEven = (Math.floor((cx - x) / size) + Math.floor((cy - y) / size)) % 2 === 0
-      ctx.fillStyle = isEven ? '#cccccc' : '#ffffff'
+      ctx.fillStyle = isEven ? '#d0cac4' : '#f0ebe6'
       ctx.fillRect(cx, cy, size, size)
     }
   }
@@ -32,23 +32,81 @@ function drawCheckerboard(ctx: CanvasRenderingContext2D, x: number, y: number, w
 }
 
 function drawPlaceholder(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) {
-  ctx.fillStyle = '#d1d5db'
+  // Warm gradient background
+  const grad = ctx.createLinearGradient(x, y, x + w, y + h)
+  grad.addColorStop(0, '#ede6de')
+  grad.addColorStop(1, '#e4dbd2')
+  ctx.fillStyle = grad
   ctx.fillRect(x, y, w, h)
 
-  const iconSize = Math.min(w, h) * 0.18
-  const lw = Math.max(2, Math.min(w, h) * 0.03)
+  const minDim = Math.min(w, h)
   const cx = x + w / 2
   const cy = y + h / 2
 
-  ctx.strokeStyle = '#9ca3af'
+  // Dashed border — signals drop target
+  const inset = Math.max(6, minDim * 0.04)
+  const dashLen = Math.max(6, minDim * 0.06)
+  const borderR = Math.max(4, minDim * 0.04)
+  ctx.save()
+  ctx.strokeStyle = '#c5b4a6'
+  ctx.lineWidth = Math.max(1.5, minDim * 0.018)
+  ctx.setLineDash([dashLen, dashLen * 0.7])
+  ctx.beginPath()
+  if (typeof ctx.roundRect === 'function') {
+    ctx.roundRect(x + inset, y + inset, w - inset * 2, h - inset * 2, borderR)
+  } else {
+    ctx.rect(x + inset, y + inset, w - inset * 2, h - inset * 2)
+  }
+  ctx.stroke()
+  ctx.setLineDash([])
+  ctx.restore()
+
+  // Single centered icon: upload arrow
+  // Vertically center icon + optional text as a group
+  const hasText = minDim >= 100
+  const iconSize = Math.max(16, Math.min(40, minDim * 0.18))
+  const fontSize = Math.max(11, Math.min(13, minDim * 0.055))
+  const gap = minDim * 0.04
+  const groupH = hasText ? iconSize + gap + fontSize : iconSize
+  const iconCY = cy - groupH / 2 + iconSize / 2
+
+  const lw = Math.max(1.5, minDim * 0.022)
+  ctx.strokeStyle = '#a8968a'
   ctx.lineWidth = lw
   ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+
+  // Arrow shaft (upward)
+  const shaftH = iconSize * 0.55
   ctx.beginPath()
-  ctx.moveTo(cx - iconSize, cy)
-  ctx.lineTo(cx + iconSize, cy)
-  ctx.moveTo(cx, cy - iconSize)
-  ctx.lineTo(cx, cy + iconSize)
+  ctx.moveTo(cx, iconCY + shaftH / 2)
+  ctx.lineTo(cx, iconCY - shaftH / 2)
   ctx.stroke()
+
+  // Arrow head
+  const headW = iconSize * 0.35
+  const headH = iconSize * 0.28
+  ctx.beginPath()
+  ctx.moveTo(cx - headW, iconCY - shaftH / 2 + headH)
+  ctx.lineTo(cx, iconCY - shaftH / 2)
+  ctx.lineTo(cx + headW, iconCY - shaftH / 2 + headH)
+  ctx.stroke()
+
+  // Base line
+  const baseW = iconSize * 0.6
+  ctx.beginPath()
+  ctx.moveTo(cx - baseW / 2, iconCY + shaftH / 2)
+  ctx.lineTo(cx + baseW / 2, iconCY + shaftH / 2)
+  ctx.stroke()
+
+  // Label
+  if (hasText) {
+    ctx.font = `500 ${fontSize}px system-ui, sans-serif`
+    ctx.fillStyle = '#a8968a'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'top'
+    ctx.fillText('Добавить фото', cx, iconCY + shaftH / 2 + gap)
+  }
 }
 
 function drawImageCover(
