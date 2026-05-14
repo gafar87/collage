@@ -56,6 +56,18 @@ export const LAYOUTS: LayoutConfig[] = [
     ],
   },
 
+  // 3 фото: 2 маленьких слева + 1 большое справа
+  {
+    id: '3l',
+    name: '2 слева + 1',
+    cellCount: 3,
+    cells: [
+      { id: 0, x: 0,   y: 0,   width: 0.5, height: 0.5 },
+      { id: 1, x: 0,   y: 0.5, width: 0.5, height: 0.5 },
+      { id: 2, x: 0.5, y: 0,   width: 0.5, height: 1   },
+    ],
+  },
+
   // 3 фото: 1 большое сверху + 2 маленьких снизу
   {
     id: '3b',
