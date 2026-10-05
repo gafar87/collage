@@ -228,3 +228,30 @@ input[type="range"] { height: 4px; }
     radial-gradient(220px 280px at 10% 95%, rgba(236, 72, 153, 0.26), transparent 70%);
   filter: blur(20px);
 }
+
+/* ── Glass dock (upload panel) ────────────────────────── */
+.glass-dock {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.48));
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 2px 0 rgba(28, 28, 28, 0.04),
+    0 -6px 24px -14px rgba(28, 28, 28, 0.18);
+}
+
+.glass-dock__glow {
+  position: absolute;
+  inset: -40px 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(300px 110px at 6% 70%, rgba(236, 72, 153, 0.36), transparent 70%),
+    radial-gradient(340px 110px at 55% 100%, rgba(139, 92, 246, 0.34), transparent 70%),
+    radial-gradient(300px 110px at 95% 40%, rgba(56, 189, 248, 0.32), transparent 70%);
+  filter: blur(18px);
+}

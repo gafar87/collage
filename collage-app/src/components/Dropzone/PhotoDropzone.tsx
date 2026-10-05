@@ -53,18 +53,19 @@ export function PhotoDropzone() {
 
   return (
     <div
+      className="glass-dock"
       style={{
         flexShrink: 0,
-        borderTop: '1px solid #eeedeb',
         display: 'flex',
         alignItems: 'center',
         padding: '0 20px',
         gap: 16,
         height: isEmpty ? 130 : 110,
-        background: '#fff',
         transition: 'height 0.3s',
       }}
     >
+      <div className="glass-dock__glow" aria-hidden="true" />
+
       {/* Drop zone */}
       <div style={{ position: 'relative', flexShrink: 0 }}>
         <div
@@ -75,7 +76,7 @@ export function PhotoDropzone() {
           style={{
             width: isEmpty ? 180 : 160,
             height: isEmpty ? 90 : 80,
-            border: `2px dashed ${isDragActive ? '#1c1c1c' : '#d0cfcc'}`,
+            border: `2px dashed ${isDragActive ? '#1c1c1c' : 'rgba(28, 28, 28, 0.18)'}`,
             borderRadius: 12,
             display: 'flex',
             flexDirection: 'column',
@@ -84,7 +85,8 @@ export function PhotoDropzone() {
             gap: 6,
             cursor: 'pointer',
             transition: 'all 0.2s',
-            background: isDragActive ? '#f5f5f2' : 'transparent',
+            background: isDragActive ? 'rgba(255, 255, 255, 0.85)' : 'rgba(255, 255, 255, 0.4)',
+            backdropFilter: 'blur(8px)',
           }}
         >
           <input
