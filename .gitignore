@@ -9,6 +9,8 @@ build/
 .env
 .env.local
 .env.*.local
+# the API key file is named " .env" (with a leading space)
+\ .env
 
 # Logs
 *.log
