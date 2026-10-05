@@ -10,8 +10,8 @@ const PRESETS = [
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  background: '#f5f5f2',
-  border: '1px solid #e4e3e0',
+  background: 'rgba(255, 255, 255, 0.55)',
+  border: '1px solid rgba(28, 28, 28, 0.08)',
   borderRadius: 6,
   padding: '6px 8px',
   fontSize: 13,
@@ -90,8 +90,8 @@ export function SizeSettings() {
               style={{
                 padding: '6px 0',
                 borderRadius: 6,
-                border: active ? '1px solid #1c1c1c' : '1px solid #e4e3e0',
-                background: active ? '#1c1c1c' : '#fff',
+                border: active ? '1px solid #1c1c1c' : '1px solid rgba(28, 28, 28, 0.08)',
+                background: active ? '#1c1c1c' : 'rgba(255, 255, 255, 0.55)',
                 color: active ? '#fff' : '#666',
                 fontSize: 12,
                 fontWeight: 500,

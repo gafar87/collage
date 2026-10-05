@@ -11,17 +11,17 @@ export function Sidebar() {
   const dimStyle = !hasImages ? { opacity: 0.4, pointerEvents: 'none' as const } : {}
 
   return (
-    <aside
-      style={{ width: 272, borderRight: '1px solid #eeedeb' }}
-      className="shrink-0 bg-white flex flex-col overflow-y-auto overflow-x-hidden"
-    >
+    <aside style={{ width: 272 }} className="glass-sidebar shrink-0 flex flex-col">
+      <div className="glass-sidebar__glow" aria-hidden="true" />
+
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
       <div style={dimStyle}>
         <LayoutPicker />
       </div>
 
       <div style={dimStyle}>
         {/* Внешний вид section */}
-        <div style={{ padding: '16px 20px', borderTop: '1px solid #eeedeb' }}>
+        <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(28, 28, 28, 0.06)' }}>
           <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#999', marginBottom: 12 }}>
             Внешний вид
           </div>
@@ -32,7 +32,7 @@ export function Sidebar() {
       </div>
 
       {/* Холст section */}
-      <div style={{ padding: '16px 20px', borderTop: '1px solid #eeedeb' }}>
+      <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(28, 28, 28, 0.06)' }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#999', marginBottom: 12 }}>
           Холст
         </div>
@@ -41,7 +41,7 @@ export function Sidebar() {
 
       {!hasImages && (
         <div style={{ marginTop: 'auto', padding: '0 16px 16px' }} className="animate-fade-in">
-          <div style={{ background: '#f8f8f6', border: '1px solid #eeedeb', borderRadius: 10, padding: '12px 14px', display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+          <div style={{ background: 'rgba(255, 255, 255, 0.5)', border: '1px solid rgba(255, 255, 255, 0.8)', borderRadius: 10, padding: '12px 14px', display: 'flex', alignItems: 'flex-start', gap: 10 }}>
             <span style={{ fontSize: 16, lineHeight: 1, color: '#aaa' }}>↓</span>
             <div>
               <div style={{ fontSize: 12, fontWeight: 600, color: '#888' }}>Начните с загрузки фото</div>
@@ -52,6 +52,7 @@ export function Sidebar() {
           </div>
         </div>
       )}
+      </div>
     </aside>
   )
 }

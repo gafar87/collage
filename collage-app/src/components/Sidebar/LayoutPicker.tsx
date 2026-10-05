@@ -44,18 +44,18 @@ export function LayoutPicker() {
                 cursor: 'pointer',
                 padding: 4,
                 transition: 'all 0.15s',
-                background: active ? '#1c1c1c' : '#f0efec',
+                background: active ? '#1c1c1c' : 'rgba(255, 255, 255, 0.45)',
                 color: active ? '#fff' : '#999',
               }}
               onMouseEnter={(e) => {
                 if (!active) {
-                  e.currentTarget.style.background = '#e4e3e0'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.8)'
                   e.currentTarget.style.color = '#666'
                 }
               }}
               onMouseLeave={(e) => {
                 if (!active) {
-                  e.currentTarget.style.background = '#f0efec'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.45)'
                   e.currentTarget.style.color = '#999'
                 }
               }}

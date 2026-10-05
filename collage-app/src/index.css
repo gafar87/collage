@@ -201,3 +201,30 @@ input[type="range"] { height: 4px; }
   outline: 2px solid rgba(167, 139, 250, 0.8);
   outline-offset: 2px;
 }
+
+/* ── Glass sidebar ────────────────────────────────────── */
+.glass-sidebar {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.48));
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset -1px 0 0 rgba(28, 28, 28, 0.06),
+    inset 1px 0 0 rgba(255, 255, 255, 0.9),
+    6px 0 24px -14px rgba(28, 28, 28, 0.18);
+}
+
+.glass-sidebar__glow {
+  position: absolute;
+  inset: 0 -40px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(200px 260px at 0% 8%, rgba(139, 92, 246, 0.32), transparent 70%),
+    radial-gradient(220px 280px at 100% 50%, rgba(56, 189, 248, 0.24), transparent 70%),
+    radial-gradient(220px 280px at 10% 95%, rgba(236, 72, 153, 0.26), transparent 70%);
+  filter: blur(20px);
+}

@@ -26,7 +26,7 @@ export function RadiusSettings() {
           max={100}
           value={borderRadius}
           onChange={(e) => handleChange(Number(e.target.value))}
-          style={{ width: 48, background: '#f5f5f2', border: '1px solid #e4e3e0', borderRadius: 6, padding: '4px 6px', fontSize: 13, textAlign: 'center', color: '#1c1c1c', fontFamily: 'inherit' }}
+          style={{ width: 48, background: 'rgba(255, 255, 255, 0.55)', border: '1px solid rgba(28, 28, 28, 0.08)', borderRadius: 6, padding: '4px 6px', fontSize: 13, textAlign: 'center', color: '#1c1c1c', fontFamily: 'inherit' }}
         />
         <span style={{ fontSize: 11, color: '#aaa' }}>px</span>
       </div>

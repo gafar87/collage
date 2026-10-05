@@ -3,7 +3,7 @@ import { useCollageStore } from '../../store/useCollageStore'
 function ColorInput({ value, onChange, disabled }: { value: string; onChange: (v: string) => void; disabled?: boolean }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      <div style={{ position: 'relative', width: 32, height: 32, borderRadius: 8, overflow: 'hidden', border: '1px solid #e4e3e0', flexShrink: 0, cursor: disabled ? 'default' : 'pointer' }}>
+      <div style={{ position: 'relative', width: 32, height: 32, borderRadius: 8, overflow: 'hidden', border: '1px solid rgba(28, 28, 28, 0.08)', flexShrink: 0, cursor: disabled ? 'default' : 'pointer' }}>
         <input
           type="color"
           value={value}
@@ -18,7 +18,7 @@ function ColorInput({ value, onChange, disabled }: { value: string; onChange: (v
         value={disabled ? 'transparent' : value.toUpperCase()}
         disabled={disabled}
         onChange={(e) => { const v = e.target.value; if (/^#[0-9a-fA-F]{0,6}$/.test(v)) onChange(v) }}
-        style={{ flex: 1, background: '#f5f5f2', border: '1px solid #e4e3e0', borderRadius: 6, padding: '5px 8px', fontSize: 13, fontFamily: 'monospace', color: '#1c1c1c', opacity: disabled ? 0.4 : 1 }}
+        style={{ flex: 1, background: 'rgba(255, 255, 255, 0.55)', border: '1px solid rgba(28, 28, 28, 0.08)', borderRadius: 6, padding: '5px 8px', fontSize: 13, fontFamily: 'monospace', color: '#1c1c1c', opacity: disabled ? 0.4 : 1 }}
         maxLength={11}
       />
     </div>

@@ -3,7 +3,7 @@ import { useCollageStore } from '../../store/useCollageStore'
 function ColorInput({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10 }}>
-      <div style={{ position: 'relative', width: 32, height: 32, borderRadius: 8, overflow: 'hidden', border: '1px solid #e4e3e0', flexShrink: 0, cursor: 'pointer' }}>
+      <div style={{ position: 'relative', width: 32, height: 32, borderRadius: 8, overflow: 'hidden', border: '1px solid rgba(28, 28, 28, 0.08)', flexShrink: 0, cursor: 'pointer' }}>
         <input
           type="color"
           value={value}
@@ -16,7 +16,7 @@ function ColorInput({ value, onChange }: { value: string; onChange: (v: string) 
         type="text"
         value={value.toUpperCase()}
         onChange={(e) => { const v = e.target.value; if (/^#[0-9a-fA-F]{0,6}$/.test(v)) onChange(v) }}
-        style={{ flex: 1, background: '#f5f5f2', border: '1px solid #e4e3e0', borderRadius: 6, padding: '5px 8px', fontSize: 13, fontFamily: 'monospace', color: '#1c1c1c' }}
+        style={{ flex: 1, background: 'rgba(255, 255, 255, 0.55)', border: '1px solid rgba(28, 28, 28, 0.08)', borderRadius: 6, padding: '5px 8px', fontSize: 13, fontFamily: 'monospace', color: '#1c1c1c' }}
         maxLength={7}
       />
     </div>
@@ -46,7 +46,7 @@ export function BorderSettings() {
           max={50}
           value={borderWidth}
           onChange={(e) => setBorderWidth(Math.min(50, Math.max(0, Number(e.target.value))))}
-          style={{ width: 48, background: '#f5f5f2', border: '1px solid #e4e3e0', borderRadius: 6, padding: '4px 6px', fontSize: 13, textAlign: 'center', color: '#1c1c1c', fontFamily: 'inherit' }}
+          style={{ width: 48, background: 'rgba(255, 255, 255, 0.55)', border: '1px solid rgba(28, 28, 28, 0.08)', borderRadius: 6, padding: '4px 6px', fontSize: 13, textAlign: 'center', color: '#1c1c1c', fontFamily: 'inherit' }}
         />
         <span style={{ fontSize: 11, color: '#aaa' }}>px</span>
       </div>
