@@ -8,6 +8,12 @@
       "port": 5173,
       "autoPort": true,
       "cwd": "collage-app"
+    },
+    {
+      "name": "kubiki",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5180", "--directory", "/Volumes/KINGSTON/MySoft/projects/kubiki"],
+      "port": 5180
     }
   ]
 }
