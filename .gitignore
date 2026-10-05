@@ -34,3 +34,6 @@ ARCHITECTURE.md
 # Cache
 .eslintcache
 .vite/
+
+# macOS AppleDouble files (external drive)
+._*
